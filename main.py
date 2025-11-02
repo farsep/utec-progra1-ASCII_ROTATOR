@@ -3,30 +3,37 @@
 # Esto es útil para el arte ASCII donde los caracteres como \n o \t no deben
 # interpretarse como saltos de línea o tabulaciones.
 art = r"""
-                       .-'')
-           ,.___  __.-'   /
-          _;----''.._)_  (--...__
-        ,'           `.__(       `-._
-       '      __,....,_              \
-      |    ,,'o    o | `.             \
-       `. |    _'  _.'  /              |
-      ,.- `>-'( )''    |               |
-    ,'  _ /  ____,.--./                |
-   |   / )")'         |               /
-   `. ( ( (._         _._        __.-'
-     `->..___`,-...--' /,--:'''''
-      /      ``>/o\   //    `.
-     /       .'/o /`-'|       \
- ___(      _/  `-'   ,'        \
-|    `---,'---...._,'--.__     |\
-| ,-----',       ,',' , _,`----' \
-| |     \|       ('`-'-'  (`-.____`.
-| |      `.       \        )\______)
-| |        `-----'''------','op||
-| |        `-,oobb.'ibbbbb: ,88||
-| |         d"'''`Y8;"'''`PY8P_)|
-| | -hrr-  `8b___od8boooood8P| ||
-| |          Y8P"'' Y888PP' || ||
+                  _____
+            _,---'     `-,_
+            * `-,_         `-,
+                  `-,@@@@@@@@@@                          _
+                    @@@@@@@@@@@                    ((    ))
+             (\_    ;;### ###;;                 {}  \\  //  {}
+      _*__  (\_c\   ;; O ( O ;;                  \\---\/,-{=\    /=
+    /\ \\ \  \ ( )  ;;, (_)  ;;                    ~~\\//~~ \\  //
+    \ \ \\ \ @@@@@   ;;//~\\;;;                     (\_(\ {{=\\//=}
+  ___\_\_\__| \  \ __ ;;;;;;;;_                      /  (o   \\//
+ [==='`____`__ \  / /\ ;;;;; \ \_                    ) ) \  <`--'>
+ |_  :~|~~~~~~|__/ /\ \       `, `-,_                ; (`~;  )  ('\
+ |##-,_|@@@@@@|   \ \\/\       |_    @-,.   __    .&'   \ ;  ;  (/~
+ |######-,_,__|_,-,\ *\ \=====@) `-,_@,-c).(_(,-'' \&....|   ;   :;
+ |#########`-----,_`-,\\/_______\::::::-,_ ; )      |_ \ |_&-. ..(
+ |####{}#######|!!!`-,__________):::::::::`-,; @)  .{ },-...\\&  `)
+ |##{ __}}#####|!!!!!!!!!-,_    `-,::::::::::_//|  /(_)(     ||   ;
+ |#{ }##{ }####|!!!!!!!!!!!!`-,_   \::::--,:/!!!/ /     \   //,--|:
+ |#{ }###{}####|!!!!!!!!!!!!!!!!`---'!!!!!!!!!!| :   ^    ) ;~/  //
+ |##{ }#{ }####|!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!} \  / \   \; / _//
+ |###{_~_}#####|!!!!!!!!!!!!!!!!!!!!!!!!!!!!,-:: /_/   \  \   C_/
+ |#############|!!!!!!!!!!!!!!!!!!!!!!!!,-`X  (( //   __//
+ |#############|!!!!!!!!!!!!!!!!!!!!,-`X  / \_,-'~   c__/
+ |#############|!!!!!!!!!!!!!!!!,-`X  / \/,-`
+ `;############|!!!!!!!!!!!!,-X   / \/,-`~
+   X`-;########|!!!!!!!!,-'X / \ /,-'~
+  /_\,-``-;####|!!!!!-'X  / \_,-'~
+`-'         `-;|,-'X  / \',-'
+                  /,-/,-'~
+            ;    /,-'~
+            `,_,-~  
 ------------------------------------------------
 """
 
@@ -41,8 +48,6 @@ lines = split_lines(art)
 def print_lines(lines):
     for line in lines:
         print(line)
-
-print_lines(lines)
 
 '''
 FUNCION PARA ROTAR 90 GRADOS EN SENTIDO HORARIO
@@ -70,7 +75,34 @@ def rotate_90_clockwise(lines):
         new_lines.append(new_line)
     return new_lines
 
-# IMPRIMIR EL ARTE ASCII ROTADO 90 GRADOS EN SENTIDO HORARI
-print_lines(rotate_90_clockwise(lines))
+def rotate_90_counterclockwise(lines):
+    # Rotar 90 grados en sentido antihorario es equivalente a rotar 90 grados en sentido horario tres veces
+    return rotate_90_clockwise(rotate_90_clockwise(rotate_90_clockwise(lines)))
 
 
+def interactive_menu():
+    """Simple looped menu (Spanish labels as requested)."""
+    while True:
+        print("\nMenu:")
+        print("1. Mostrar un ASCII ART")
+        print("2. Rotar 90 grados en sentido horario")
+        print("3. Rotar 90 grados en sentido anti horario")
+        print("4. Rotar 180 grados")
+        print("0. Salir")
+        choice = input("Elige una opción: ").strip()
+
+        if choice == '1':
+            print_lines(lines)
+        elif choice == '2':
+            print_lines(rotate_90_clockwise(lines))
+        elif choice == '3':
+            print_lines(rotate_90_counterclockwise(lines))
+        elif choice == '4':
+            print_lines(reversed(lines))
+        elif choice in ('0', 'q', 'Q'):
+            print("Saliendo...")
+            break
+        else:
+            print("Opción no válida. Intenta de nuevo.")
+
+interactive_menu()
