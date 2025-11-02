@@ -70,7 +70,7 @@ def rotate_90_clockwise(lines):
         new_lines.append(new_line)
     return new_lines
 
-# IMPRIMIR EL ARTE ASCII ROTADO 90 GRADOS EN SENTIDO HORARIO
+# IMPRIMIR EL ARTE ASCII ROTADO 90 GRADOS EN SENTIDO HORARI
 print_lines(rotate_90_clockwise(lines))
 
 
