@@ -75,9 +75,39 @@ def rotate_90_clockwise(lines):
         new_lines.append(new_line)
     return new_lines
 
+# def rotate_90_counterclockwise(lines):
+#     # Rotar 90 grados en sentido antihorario es equivalente a rotar 90 grados en sentido horario tres veces
+#     return rotate_90_clockwise(rotate_90_clockwise(rotate_90_clockwise(lines)))
+
+
 def rotate_90_counterclockwise(lines):
-    # Rotar 90 grados en sentido antihorario es equivalente a rotar 90 grados en sentido horario tres veces
-    return rotate_90_clockwise(rotate_90_clockwise(rotate_90_clockwise(lines)))
+    # Crear una nueva lista para las líneas rotadas
+    new_lines = []
+
+    # Determinar la longitud máxima de las líneas originales en base a la anchura inicial
+    max_length = max(len(line) for line in lines)
+    # Recorrer cada índice de carácter en las líneas originales( de forma inversa al sentido horario)
+    for i in range(max_length-1, -1, -1):
+        new_line = ''
+        # Recorrer las líneas originales en orden normal
+        for line in lines:
+            # Añadir el carácter correspondiente o un espacio si la línea es más corta
+            if i < len(line):
+                new_line += line[i]
+            # Si la línea es más corta, añadir un espacio
+            else:
+                new_line += ' '
+        # Añadir la nueva línea a la lista de líneas rotadas
+        new_lines.append(new_line)
+    return new_lines
+
+def invert_the_image(lines):
+    # Invertir la imagen es simplemente revertir el orden de las líneas
+    # Solo porque no recuerdo si la profesora enseño el reversed entonces toca hacerlo manual
+    new_lines = []
+    for line in lines[::-1]:
+        new_lines.append(line)
+    return new_lines
 
 
 def interactive_menu():
@@ -97,8 +127,10 @@ def interactive_menu():
             print_lines(rotate_90_clockwise(lines))
         elif choice == '3':
             print_lines(rotate_90_counterclockwise(lines))
+        # elif choice == '4':
+        #     print_lines(reversed(lines))
         elif choice == '4':
-            print_lines(reversed(lines))
+            print_lines(invert_the_image(lines))
         elif choice in ('0', 'q', 'Q'):
             print("Saliendo...")
             break
