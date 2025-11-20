@@ -101,7 +101,7 @@ def rotate_90_counterclockwise(lines):
         new_lines.append(new_line)
     return new_lines
 
-def invert_the_image(lines):
+def reflect_the_image(lines):
     # Invertir la imagen es simplemente revertir el orden de las líneas
     # Solo porque no recuerdo si la profesora enseño el reversed entonces toca hacerlo manual
     new_lines = []
@@ -109,28 +109,48 @@ def invert_the_image(lines):
         new_lines.append(line)
     return new_lines
 
+# def rotate_180(lines):
+#     # Rotar 180 grados es equivalente a rotar 90 grados dos veces
+#     return rotate_90_clockwise(rotate_90_clockwise(lines))
+
+def rotate_180(lines):
+    # Rotar 180 grados recorriendo las líneas en orden inverso y cada línea invertida
+    new_lines = []
+    for line in reversed(lines):
+        new_lines.append(line[::-1])
+    return new_lines
 
 def interactive_menu():
     """Simple looped menu (Spanish labels as requested)."""
+
+    new_lines=lines
+
     while True:
         print("\nMenu:")
         print("1. Mostrar un ASCII ART")
         print("2. Rotar 90 grados en sentido horario")
         print("3. Rotar 90 grados en sentido anti horario")
         print("4. Rotar 180 grados")
+        print("5. Reflejar Verticalmente")
         print("0. Salir")
         choice = input("Elige una opción: ").strip()
 
         if choice == '1':
-            print_lines(lines)
+            print_lines(new_lines)
         elif choice == '2':
-            print_lines(rotate_90_clockwise(lines))
+            new_lines = rotate_90_clockwise(new_lines)
+            print_lines(new_lines)
         elif choice == '3':
-            print_lines(rotate_90_counterclockwise(lines))
+            new_lines = rotate_90_counterclockwise(new_lines)
+            print_lines(new_lines)
         # elif choice == '4':
         #     print_lines(reversed(lines))
         elif choice == '4':
-            print_lines(invert_the_image(lines))
+            new_lines=rotate_180(new_lines)
+            print_lines(new_lines)
+        elif choice == '5':
+            new_lines=reflect_the_image(new_lines)
+            print_lines(new_lines)
         elif choice in ('0', 'q', 'Q'):
             print("Saliendo...")
             break
