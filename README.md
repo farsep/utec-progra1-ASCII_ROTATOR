@@ -1,4 +1,4 @@
-n# 🎨 Generador y Manipulador de Arte ASCII
+# 🎨 Generador y Manipulador de Arte ASCII
 
 Una herramienta interactiva de línea de comandos (CLI) desarrollada por el **Grupo 5**. Este proyecto permite manipular, analizar y rotar arte ASCII existente, además de integrar capacidades de **Inteligencia Artificial Generativa** para crear nuevo arte ASCII basado en temáticas personalizadas utilizando los modelos más recientes de Google Gemini.
 
