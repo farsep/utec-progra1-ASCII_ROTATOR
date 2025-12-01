@@ -188,7 +188,7 @@ def write_file(filename, lines):
     except Exception as e:
         return f"Error escribiendo el archivo: {e}"
 
-def request_description_to_gemini(art_string):
+def request_description_to_gemini():
     """
     Sends the ASCII art to Gemini for a description.
     """
@@ -196,7 +196,7 @@ def request_description_to_gemini(art_string):
 
     try:
         # FIX 1: Initialize client empty (or with api_key="...")
-        client = genai.Client(api_key="AIzaSyAmueVeMT1hhE_e7ZH0MV56iXXC6iYHy0g")
+        client = genai.Client(api_key=input("Api key"))
 
         # FIX 2: Use a valid model (2.5 doesn't exist yet, using 2.0-flash-exp)
         response = client.models.generate_content(
@@ -270,3 +270,4 @@ def interactive_menu():
 
 
 interactive_menu()
+
