@@ -1,35 +1,9 @@
 import sys
 import os
-
-# --- STEP 1: CONFIGURATION (Vendoring) ---
-# We calculate the path to the 'libs' folder relative to this script
-current_dir = os.path.dirname(os.path.abspath(__file__))
-libs_path = os.path.join(current_dir, 'libs')
-
-# We add it to the start of the system path so Python finds these packages first
-if libs_path not in sys.path:
-    sys.path.insert(0, libs_path)
-
 from google import genai
 
 
-# from google import genai
-#
-# client = genai.Client()
-#
-# response = client.models.generate_content(
-#     model="gemini-2.5-flash",
-#     contents="Explain how AI works in a few words",
-# )
-#
-# print(response.text)
 
-
-#Importando las librerias para leer el archivo y mostrarlo en pantalla
-
-#from pathlib import Path
-
-#from twisted.mail.test.test_mail import empty
 
 # La R antes de las comillas triples indica que es una cadena raw (cruda),
 # lo que significa que los caracteres de escape se tratan literalmente.
@@ -192,22 +166,27 @@ def request_description_to_gemini():
     """
     Sends the ASCII art to Gemini for a description.
     """
+
+    api_key = input("Ingresa tu API KEY: ").strip()
+
+    tematica = input("Ingresa una tematica: ").strip()
+
     print("\n🤖 Consultando a Gemini...")
 
     try:
         # FIX 1: Initialize client empty (or with api_key="...")
-        client = genai.Client(api_key=input("Api key"))
+        client = genai.Client(api_key=api_key)
 
         # FIX 2: Use a valid model (2.5 doesn't exist yet, using 2.0-flash-exp)
         response = client.models.generate_content(
-            model="gemini-2.0-flash-exp",
-            contents="Describe the next ASCII art: \n" + art_string,
+            model="gemini-3-pro-preview",
+            contents="Crea un ASCCI ART navideño de no mas de 60*60 que sea siempre diferente en cada solicitud que se te haga en por el API_KEY y no muestres nada mas que el ASCII ART. Y el arte sera referente a: \n" + tematica,
         )
 
         print("\n--- Respuesta de Gemini ---")
         # FIX 3: Fixed Indentation here
         print(response.text)
-        print("---------------------------")
+        print("-"*60)
 
     except Exception as e:
         print(f"❌ Error: {e}")
@@ -226,7 +205,7 @@ def interactive_menu():
         print("5. Mostrar frecuencia de caracteres")
         print("6. Leer arte ASCII desde un archivo")
         print("7. Guardar la vista actual del arte ASCII en un archivo")
-        print("8. Describir el arte ASCII usando Gemini-2.5-Flash")
+        print("8. Crear arte ASCII usando Gemini-2.5-Flash")
         print("0. Salir")
         choice = input("Elige una opción: ").strip()
 
@@ -260,7 +239,7 @@ def interactive_menu():
             print(result)
 
         elif choice == '8':
-            request_description_to_gemini(reconstruct_art_from_lines(new_lines))
+            request_description_to_gemini()
 
         elif choice in ('0', 'q', 'Q'):
             print("Saliendo...")
