@@ -180,13 +180,10 @@ def request_description_to_gemini():
         # FIX 2: Use a valid model (2.5 doesn't exist yet, using 2.0-flash-exp)
         response = client.models.generate_content(
             model="gemini-3-pro-preview",
-            contents="Crea un ASCII ART navideño sobre el siguiente personaje y solo muestra el ASCCI ART sin ningun comentario tuyo: \n" + personaje,
+            contents="Crea un ASCII ART navideño sobre el siguiente personaje y solo muestra el ASCCI ART sin ningun comentario tuyo y arrojalo en texto plano, no en bloques de codigo: \n" + personaje,
         )
 
-        print("\n--- Respuesta de Gemini ---")
-        # FIX 3: Fixed Indentation here
-        print(response.text)
-        print("-"*60)
+        return response.text
 
     except Exception as e:
         print(f"❌ Error: {e}")
@@ -239,7 +236,13 @@ def interactive_menu():
             print(result)
 
         elif choice == '8':
-            request_description_to_gemini()
+            gemini_art = request_description_to_gemini()
+            if gemini_art:
+                new_lines = split_lines(gemini_art)
+                print("\n--- Respuesta de Gemini ---")
+                print_lines(new_lines)
+                print("-"*60)
+
 
         elif choice in ('0', 'q', 'Q'):
             print("Saliendo...")
