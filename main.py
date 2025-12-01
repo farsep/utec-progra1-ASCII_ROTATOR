@@ -180,7 +180,7 @@ def request_description_to_gemini():
         # FIX 2: Use a valid model (2.5 doesn't exist yet, using 2.0-flash-exp)
         response = client.models.generate_content(
             model="gemini-3-pro-preview",
-            contents="Crea un ASCCI ART navideño de no mas de 60*60 que sea siempre diferente en cada solicitud que se te haga en por el API_KEY y no muestres nada mas que el ASCII ART. Y el arte sera referente a: \n" + tematica,
+            contents="Crea un ASCII ART navideño de no mas de 60*60 que sea siempre diferente en cada solicitud que se te haga en por el API_KEY y no muestres nada mas que el ASCII ART. Y el arte sera referente a: \n" + tematica,
         )
 
         print("\n--- Respuesta de Gemini ---")
