@@ -169,7 +169,7 @@ def request_description_to_gemini():
 
     api_key = input("Ingresa tu API KEY: ").strip()
 
-    tematica = input("Ingresa una tematica: ").strip()
+    personaje = input("Ingresa un personaje: ").strip()
 
     print("\n🤖 Consultando a Gemini...")
 
@@ -180,7 +180,7 @@ def request_description_to_gemini():
         # FIX 2: Use a valid model (2.5 doesn't exist yet, using 2.0-flash-exp)
         response = client.models.generate_content(
             model="gemini-3-pro-preview",
-            contents="Crea un ASCII ART navideño de no mas de 60*60 que sea siempre diferente en cada solicitud que se te haga en por el API_KEY y no muestres nada mas que el ASCII ART. Y el arte sera referente a: \n" + tematica,
+            contents="Crea un ASCII ART navideño de alta resolucion sobre el siguiente personaje: \n" + personaje + "\n" + "y no hagas otra cosa que el ascii art y sin ningun otro comentario tuyo",
         )
 
         print("\n--- Respuesta de Gemini ---")
@@ -205,7 +205,7 @@ def interactive_menu():
         print("5. Mostrar frecuencia de caracteres")
         print("6. Leer arte ASCII desde un archivo")
         print("7. Guardar la vista actual del arte ASCII en un archivo")
-        print("8. Crear arte ASCII usando Gemini-2.5-Flash")
+        print("8. Crear arte ASCII navideño de un personaje usando Gemini-3")
         print("0. Salir")
         choice = input("Elige una opción: ").strip()
 

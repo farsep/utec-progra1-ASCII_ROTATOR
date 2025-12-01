@@ -1,4 +1,4 @@
-# 🎨 Generador y Manipulador de Arte ASCII
+n# 🎨 Generador y Manipulador de Arte ASCII
 
 Una herramienta interactiva de línea de comandos (CLI) desarrollada por el **Grupo 5**. Este proyecto permite manipular, analizar y rotar arte ASCII existente, además de integrar capacidades de **Inteligencia Artificial Generativa** para crear nuevo arte ASCII basado en temáticas personalizadas utilizando los modelos más recientes de Google Gemini.
 
@@ -63,7 +63,7 @@ El sistema desplegará las siguientes opciones:
 7.  **Guardar la vista actual:** Guarda el resultado de tus rotaciones en un archivo nuevo.
 8.  **Crear arte ASCII usando Gemini:**
       * El programa te pedirá tu **API KEY**.
-      * Luego te pedirá una **temática** (ej: "un árbol de navidad", "un gato").
+      * Luego te pedirá un **personaje** (ej: "sonic", "goku").
       * La IA generará un dibujo nuevo y único para ti.
 9.  **Salir:** Cierra el programa.
 
