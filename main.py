@@ -27,9 +27,9 @@ from google import genai
 
 #Importando las librerias para leer el archivo y mostrarlo en pantalla
 
-from pathlib import Path
+#from pathlib import Path
 
-from twisted.mail.test.test_mail import empty
+#from twisted.mail.test.test_mail import empty
 
 # La R antes de las comillas triples indica que es una cadena raw (cruda),
 # lo que significa que los caracteres de escape se tratan literalmente.
@@ -267,5 +267,6 @@ def interactive_menu():
             break
         else:
             print("Opción no válida. Intenta de nuevo.")
+
 
 interactive_menu()
